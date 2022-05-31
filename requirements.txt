@@ -1,0 +1,48 @@
+[input]
+Let user estimate cost of construction projects.
+
+[estimate]
+--[Estimate Calculation]
+    -- Direct Cost * Factor F
+    --[Direct Cost]
+        --Cost of entire projects from Bill of Quantities (BoQ)
+        --Includes Transportation cost for Road, Bridge, and Irrigation project types
+        --Includes Operating Cost for Road, Bridge and Irrigation 
+        --Includes ... for Irrigation project
+        --[BoQ]
+            --List of cost of works 
+            --[Cost of Work] 
+                --Sum of [material cost] and [labor cost] for each work item
+                --[Material Cost]
+                    --Material Unit Cost * Quantities
+                    --[Material Unit Cost]
+                        --Use current price while estimating the project cost
+                        --Seperate by central region and provincial region
+                        --[Central Region] 
+                            --Bangkok, Nonthaburi, Patumthani, and SamutPrakarn
+                            --Order of material price is as follow:
+                            --1) Ministry of Commerce 
+                            --2) Nearby Provincial Commerce Office
+                            --3) Average Investigated Price
+                        --[Provincial Region]
+                            --Order of material price is as follow:
+                            --1) Provincial Commerce Office
+                            --2) Nearby Provincial Commerce Office 
+                            --3) Average Investigated Price
+                --[Labor Cost]
+                    --Labor Unit Cost * Quantities
+    --[Factor F]
+        --Depends on Project Types
+        --Depends on Direct Cost    
+        --Have Lookup table defined by Comptroller General Department (CGD)
+        --[Lookup Table]
+            --Seperate direct cost into multiple ranges, each range will have their own Factor F
+        --Calculate by applying proportion of low and high in each range
+        --By multiplying Factor F, the Estimated Cost will include Profit for the Projec        
+
+[construction projects]
+--[Project Types]
+    --Building
+    --Road
+    --Bridge
+    --Irrigation
